@@ -154,7 +154,7 @@ class ConstraintsArityTests: XCTestCase {
     }
 }
 
-#if os(iOS) || os(tvOS)
+#if canImport(UIKit)
 class AddingSubviewsTests: XCTestCase {
     let container = View()
     let a = View()

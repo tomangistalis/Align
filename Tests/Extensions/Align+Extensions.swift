@@ -2,7 +2,7 @@
 //
 // Copyright (c) 2017-2022 Alexander Grebenyuk (github.com/kean).
 
-#if os(iOS) || os(tvOS)
+#if canImport(UIKit)
 
 import Align
 import UIKit

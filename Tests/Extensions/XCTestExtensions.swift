@@ -102,7 +102,7 @@ extension NSLayoutConstraint.Attribute {
         case .lastBaseline: return "lastBaseline"
         case .firstBaseline: return "firstBaseline"
         case .notAnAttribute: return "notAnAttribute"
-#if os(iOS) || os(tvOS)
+#if canImport(UIKit)
         case .bottomMargin: return "bottomMargin"
         case .topMargin: return "topMargin"
         case .leftMargin: return "leftMargin"
@@ -117,7 +117,7 @@ extension NSLayoutConstraint.Attribute {
     }
 }
 
-#if os(iOS) || os(tvOS)
+#if canImport(UIKit)
 typealias View = UIView
 typealias LayoutPriority = UILayoutPriority
 #elseif os(macOS)

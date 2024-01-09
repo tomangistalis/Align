@@ -2,7 +2,7 @@
 //
 // Copyright (c) 2017-2022 Alexander Grebenyuk (github.com/kean).
 
-#if os(iOS) || os(tvOS)
+#if canImport(UIKit)
 import UIKit
 #elseif os(macOS)
 import AppKit
@@ -10,14 +10,14 @@ import AppKit
 
 /// A type that has layout anchors: either a view or a layout guide.
 public protocol LayoutItem {
-#if os(iOS) || os(tvOS)
+#if canImport(UIKit)
     var superview: UIView? { get }
 #else
     var superview: NSView? { get }
 #endif
 }
 
-#if os(iOS) || os(tvOS)
+#if canImport(UIKit)
 extension UIView: LayoutItem {}
 extension UILayoutGuide: LayoutItem {
     public var superview: UIView? { owningView }
@@ -240,7 +240,7 @@ public struct AnchorCollectionEdges {
         AnchorCollectionEdges(item: item, isAbsolute: true)
     }
 
-#if os(iOS) || os(tvOS)
+#if canImport(UIKit)
     public typealias Axis = NSLayoutConstraint.Axis
 #else
     public typealias Axis = NSLayoutConstraint.Orientation
@@ -553,7 +553,7 @@ public final class Constraints: Collection {
     /// Creates and automatically installs a constraint.
     static func add(item item1: Any, attribute attr1: NSLayoutConstraint.Attribute, relatedBy relation: NSLayoutConstraint.Relation = .equal, toItem item2: Any? = nil, attribute attr2: NSLayoutConstraint.Attribute? = nil, multiplier: CGFloat = 1, constant: CGFloat = 0) -> NSLayoutConstraint {
         precondition(Thread.isMainThread, "Align APIs can only be used from the main thread")
-        #if os(iOS) || os(tvOS)
+        #if canImport(UIKit)
         (item1 as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
         #elseif os(macOS)
         (item1 as? NSView)?.translatesAutoresizingMaskIntoConstraints = false
@@ -605,7 +605,7 @@ public extension Constraints {
 
 // MARK: - Misc
 
-#if os(iOS) || os(tvOS)
+#if canImport(UIKit)
 public typealias EdgeInsets = UIEdgeInsets
 #elseif os(macOS)
 public typealias EdgeInsets = NSEdgeInsets

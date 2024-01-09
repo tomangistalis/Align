@@ -40,7 +40,7 @@ class AnchorEdgeTests: XCTestCase {
         }
     }
 
-#if os(iOS) || os(tvOS)
+#if canImport(UIKit)
     func testPinToSuperviewMargin() {
         test("pin top to superview margin") {
             let c = view.anchors.top.pin(to: container.layoutMarginsGuide)
